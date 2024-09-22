@@ -1,7 +1,7 @@
 package com.pique.pique.domain.controllers;
 
-import com.pique.pique.domain.dtos.UserDTO;
-import com.pique.pique.domain.dtos.UserDTOResponse;
+import com.pique.pique.domain.dtos.user.UserDTO;
+import com.pique.pique.domain.dtos.user.UserDTOResponse;
 import com.pique.pique.domain.exceptions.ErrorResponse;
 import com.pique.pique.domain.exceptions.UserAlreadyExistsException;
 import com.pique.pique.domain.service.UserService;

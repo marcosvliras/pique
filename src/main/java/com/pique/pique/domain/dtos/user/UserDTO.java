@@ -1,4 +1,4 @@
-package com.pique.pique.domain.dtos;
+package com.pique.pique.domain.dtos.user;
 
 import com.pique.pique.domain.entities.enums.UserType;
 import jakarta.validation.Valid;

@@ -1,10 +1,9 @@
 package com.pique.pique.domain.service;
 
-import com.pique.pique.domain.dtos.UserDTO;
+import com.pique.pique.domain.dtos.user.UserDTO;
 import com.pique.pique.domain.entities.UserEntity;
 import com.pique.pique.domain.exceptions.UserAlreadyExistsException;
 import com.pique.pique.domain.repositories.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
