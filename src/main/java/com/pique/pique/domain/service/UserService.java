@@ -27,6 +27,7 @@ public class UserService {
                 userDTO.document(),
                 userDTO.email(),
                 userDTO.password(),
+                userDTO.balance(),
                 userDTO.userType()
         );
 
