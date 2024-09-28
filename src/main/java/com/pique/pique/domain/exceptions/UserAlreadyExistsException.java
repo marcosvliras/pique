@@ -1,8 +1,10 @@
 package com.pique.pique.domain.exceptions;
 
-public class UserAlreadyExistsException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UserAlreadyExistsException extends ExceptionInterface {
 
     public UserAlreadyExistsException(String message) {
-        super(message);
+        super(message, HttpStatus.CONFLICT.value());
     }
 }

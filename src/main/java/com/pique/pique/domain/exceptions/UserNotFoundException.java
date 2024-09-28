@@ -1,7 +1,9 @@
 package com.pique.pique.domain.exceptions;
 
-public class UserNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class UserNotFoundException extends ExceptionInterface {
     public UserNotFoundException(String message) {
-        super(message);
+        super(message, HttpStatus.NOT_FOUND.value());
     }
 }
