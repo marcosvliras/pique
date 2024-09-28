@@ -3,6 +3,7 @@ package com.pique.pique.domain.entities;
 import jakarta.persistence.*;
 import org.apache.catalina.User;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity(name = "transactions")
@@ -13,7 +14,7 @@ public class TransactionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double value;
+    private BigDecimal value;
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
@@ -25,7 +26,7 @@ public class TransactionEntity {
 
     private LocalDateTime timestamp;
 
-    public TransactionEntity(UserEntity sender, UserEntity receiver, Double value) {
+    public TransactionEntity(UserEntity sender, UserEntity receiver, BigDecimal value) {
         this.sender = sender;
         this.receiver = receiver;
         this.value = value;
@@ -40,11 +41,11 @@ public class TransactionEntity {
         this.id = id;
     }
 
-    public Double getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 

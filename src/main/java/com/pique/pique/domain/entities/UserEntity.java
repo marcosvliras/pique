@@ -3,9 +3,11 @@ package com.pique.pique.domain.entities;
 import com.pique.pique.domain.entities.enums.UserType;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity(name="users")
 @Table(name="users")
-public class UserEntity {
+public class UserEntity{
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -25,8 +27,30 @@ public class UserEntity {
 
     private String password;
 
+    @Column(columnDefinition = "DECIMAL(19, 2) DEFAULT 0.00")
+    private BigDecimal balance = BigDecimal.ZERO;
+
     @Column(name = "user_type")
     private UserType userType;
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        if (balance == null || balance.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Balance must be greater than or equal to zero");
+        }
+        this.balance = balance;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -86,6 +110,7 @@ public class UserEntity {
             String document,
             String email,
             String password,
+            BigDecimal balance,
             UserType userType
     ) {
         this.firstName = firstName;
@@ -94,6 +119,12 @@ public class UserEntity {
         this.email = email;
         this.password = password;
         this.userType = userType;
+
+        //if (balance == null || balance.compareTo(BigDecimal.ZERO) < 0) {
+        //    balance = BigDecimal.ZERO;
+        //}
+
+        this.balance = balance;
     }
 
     @Override
