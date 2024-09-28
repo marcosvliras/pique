@@ -5,6 +5,7 @@ CREATE TABLE users (
     document VARCHAR(20) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    balance DECIMAL(19, 2) NOT NULL,
     user_type INTEGER NOT NULL
 );
 
