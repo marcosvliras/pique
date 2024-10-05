@@ -23,8 +23,11 @@ public class TransactionService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private TransactionValidatorService transactionValidatorService;
+
     @Transactional
-    public TransactionEntity createTransaction(TransactionDTO transactionDTO){
+    public TransactionEntity executeTransaction(TransactionDTO transactionDTO){
         UserEntity sender = validateSender(transactionDTO);
         UserEntity receiver = validateReceiver(transactionDTO);
 
@@ -39,6 +42,7 @@ public class TransactionService {
         BigDecimal newReceiverBalance = receiver.getBalance().add(transactionDTO.value());
         receiver.setBalance(newReceiverBalance);
 
+        transactionValidatorService.validate(transactionDTO);
         userRepository.save(sender);
         userRepository.save(receiver);
         return transactionRepository.save(newTransaction);
@@ -62,7 +66,7 @@ public class TransactionService {
 
     private void validateSenderBalance(UserEntity sender, BigDecimal value) {
         if (sender.getBalance().compareTo(value) == -1) {
-            throw new InvalidTransactionException("Insufficient balance.");
+            throw new InvalidTransactionException("Insufficient balance for user " + sender.getId());
         }
     }
 

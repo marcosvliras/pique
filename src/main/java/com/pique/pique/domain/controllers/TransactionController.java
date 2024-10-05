@@ -24,7 +24,7 @@ public class TransactionController {
 
     @PostMapping
     public TransactionDTOResponse createTransaction(@RequestBody TransactionDTO transactionDTO){
-         TransactionEntity transactionEntity = transactionService.createTransaction(transactionDTO);
+         TransactionEntity transactionEntity = transactionService.executeTransaction(transactionDTO);
          return TransactionDTOResponse.fromTransactionEntity(transactionEntity);
     }
 
